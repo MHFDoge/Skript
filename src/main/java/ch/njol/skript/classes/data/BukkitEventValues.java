@@ -60,6 +60,8 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason;
 import org.bukkit.event.entity.EntityTameEvent;
 import org.bukkit.event.entity.FireworkExplodeEvent;
 import org.bukkit.event.entity.ItemDespawnEvent;
@@ -404,6 +406,21 @@ public final class BukkitEventValues {
 				if (e.getDamager() instanceof Projectile)
 					return (Projectile) e.getDamager();
 				return null;
+			}
+		}, 0);
+		// EntityRegainHealthEvent
+		EventValues.registerEventValue(EntityRegainHealthEvent.class, RegainReason.class, new Getter<RegainReason, EntityRegainHealthEvent>() {
+			@Override
+			@Nullable
+			public RegainReason get(final EntityRegainHealthEvent e) {
+				return e.getRegainReason();
+			}
+		}, 0);
+		EventValues.registerEventValue(EntityRegainHealthEvent.class, Number.class, new Getter<Number, EntityRegainHealthEvent>() {
+			@Override
+			@Nullable
+			public Number get(final EntityRegainHealthEvent e) {
+				return e.getAmount();
 			}
 		}, 0);
 		// EntityDeathEvent
